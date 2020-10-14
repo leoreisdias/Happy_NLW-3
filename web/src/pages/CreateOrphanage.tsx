@@ -2,7 +2,7 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import { Map, Marker, TileLayer } from 'react-leaflet';
 import { LeafletMouseEvent } from 'leaflet'
 
-import { FiPlus } from "react-icons/fi";
+import { FiPlus, FiX } from "react-icons/fi";
 
 import '../styles/pages/create-orphanage.css';
 import Sidebar from "../components/Sidebar";
@@ -75,6 +75,18 @@ export default function CreateOrphanage() {
     setPreviewImages(selectedImagesPreview)
   }
 
+  function handleDeleteImage(imageIndex: number) {
+    const arrayPreviewImage = previewImages.filter((value, index) => {
+      return index !== imageIndex
+    });
+    const arrayImages = images.filter((value, index) => {
+      return index !== imageIndex
+    });
+
+    setImages(arrayImages);
+    setPreviewImages(arrayPreviewImage)
+  }
+
   return (
     <div id="page-create-orphanage">
       <Sidebar />
@@ -119,10 +131,11 @@ export default function CreateOrphanage() {
               <label htmlFor="images">Fotos</label>
 
               <div className="images-container">
-                {previewImages.map(image => {
-                  return (
-                    <img key={image} src={image} alt={name} />
-                  )
+                {previewImages.map((image, index) => {
+                  return (<div className="eachImage" key={image}>
+                    <FiX className="deleteImage" size={30} color="red" onClick={() => handleDeleteImage(index)} />
+                    <img src={image} alt={name} />
+                  </div>)
                 })}
 
                 <label htmlFor="image[]" className="new-image">

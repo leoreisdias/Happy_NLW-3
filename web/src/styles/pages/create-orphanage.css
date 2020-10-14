@@ -93,7 +93,23 @@ form.create-orphanage-form .input-block .images-container{
   grid-gap: 16px;
 }
 
-form.create-orphanage-form .input-block .images-container img{
+form.create-orphanage-form .input-block .images-container .eachImage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+form.create-orphanage-form .input-block .images-container .eachImage .deleteImage{
+  position: absolute;
+  align-self: flex-end;
+  background: #37C77F;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 1px;
+}
+
+form.create-orphanage-form .input-block .images-container .eachImage img{
   width: 100%;
   height: 96px;
   object-fit: cover;
